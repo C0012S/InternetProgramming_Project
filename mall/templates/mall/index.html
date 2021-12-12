@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Mall</h1>
+
+    {% for i in items %}
+        <hr/>
+        <h2> <a href="{{ i.get_absolute_url }}"> {{ i.item_name }} </a> </h2>
+        <h4> {{ i.item_price }} </h4>
+        <p> {{ i.item_explanation }} </p>
+    {% endfor %}
+</body>
+</html>

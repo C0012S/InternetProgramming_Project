@@ -16,3 +16,6 @@ class Item(models.Model):
 
     def __str__(self):
         return f'[{self.pk}]{self.item_name}'
+
+    def get_absolute_url(self):
+        return f'/mall/{self.pk}'
