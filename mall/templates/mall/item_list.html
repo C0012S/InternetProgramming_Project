@@ -7,7 +7,7 @@
 <body>
     <h1>Mall</h1>
 
-    {% for i in items %}
+    {% for i in item_list %}
         <hr/>
         <h2> <a href="{{ i.get_absolute_url }}"> {{ i.item_name }} </a> </h2>
         <h4> {{ i.item_price }} </h4>
