@@ -9,6 +9,9 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
 
+    def get_absolute_url(self):
+        return f'/mall/category/{self.slug}'
+
     class Meta:
         verbose_name_plural = 'Categories'
 

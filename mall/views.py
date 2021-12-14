@@ -26,3 +26,19 @@ class ItemDetail(DetailView) :
         return context
 
 # item_detail.html
+
+def category_page(request, slug):
+    if slug == 'no_category':
+        category = '미분류'
+        item_list = Item.objects.filter(category=None)
+    else:
+        category = Category.objects.get(slug=slug)
+        item_list = Item.objects.filter(category=category)
+    return render(request, 'mall/item_list.html',
+                  {
+                      'item_list' : item_list,
+                      'categories' : Category.objects.all(),
+                      'no_category_item_count' : Item.objects.filter(category=None).count(),
+                      'category' : category
+                  }
+                  )
