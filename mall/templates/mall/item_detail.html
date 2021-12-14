@@ -7,6 +7,11 @@
                     <div id="item-area">
                         <!-- Post header-->
                         <header class="mb-4">
+                            {% if item.category %}
+                                <span class="badge bg-secondary float-right">{{ item.category }}</span>
+                            {% else %}
+                                <span class="badge bg-secondary float-right">미분류</span>
+                            {% endif %}
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">{{ item.item_name }}</h1>
                             <!-- Post meta content-->

@@ -2,9 +2,14 @@
 {% block main_area %}
           {% for i in item_list %}
               <!-- Blog post-->
-              <div class="card mb-4">
+              <div class="card mb-4" id="item-{{ i.pk }}">
                 <img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." />
                 <div class="card-body">
+                    {% if i.category %}
+                        <span class="badge bg-secondary float-right">{{ i.category }}</span>
+                    {% else %}
+                        <span class="badge bg-secondary float-right">미분류</span>
+                    {% endif %}
                     <div class="small text-muted">{{ i.item_price }} 원</div>
                     <h2 class="card-title h4">{{ i.item_name }}</h2>
                     <p class="card-text">{{ i.item_explanation }}</p>

@@ -1,33 +1,28 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
-from . models import Item
+from . models import Item, Category
 
 # Create your views here.
 class ItemList(ListView) :
     model = Item
     ordering = '-pk'
-#    template_name = 'mall/index.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ItemList, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        context['no_category_item_count'] = Item.objects.filter(category=None).count()
+        return context
+
 # item_list.html
 
 class ItemDetail(DetailView) :
     model = Item
-# item_detail.html
 
-# def index(request):
-#     items = Item.objects.all().order_by('-pk')
-#
-#     return render(request, 'mall/index.html',
-#                   {
-#                       'items' : items
-#                   }
-#                   )
-#
-# def single_item_page(request, pk):
-#     item = Item.objects.get(pk=pk)
-#
-#     return render(request, 'mall/single_item_page.html',
-#                   {
-#                       'item' : item
-#                   }
-#                   )
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ItemDetail, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        context['no_category_item_count'] = Item.objects.filter(category=None).count()
+        return context
+
+# item_detail.html
