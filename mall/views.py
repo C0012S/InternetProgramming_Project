@@ -1,16 +1,19 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from . models import Item, Category
 
 # Create your views here.
-class ItemCreate(LoginRequiredMixin, CreateView):
+class ItemCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Item
     fields = ['item_name', 'item_explanation', 'item_price', 'item_size', 'item_material', 'category'] # item_image, maker 추가 필요
 
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
     def form_valid(self, form):
         current_user = self.request.user
-        if current_user.is_authenticated:
+        if current_user.is_authenticated and (current_user.is_staff or current_user.is_superuser):
             form.instance.author = current_user
             return super(ItemCreate, self).form_valid(form)
         else:
