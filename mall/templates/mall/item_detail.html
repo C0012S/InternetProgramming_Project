@@ -15,7 +15,7 @@
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">{{ item.item_name }}</h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">
+                            <div class="small" style="font-size:1.5em">
                                 {{ item.item_price }} 원
                                 {% if user.is_authenticated %}
                                     {% if user.is_staff or user.is_superuser %}
@@ -33,6 +33,7 @@
                         <!-- Post content-->
                         <section class="mb-5">
                             <p>{{ item.item_explanation }}</p>
+                            <div class="small text-muted">개발 예정</div>
                         </section>
                     </div>
                     <!-- Comments section-->

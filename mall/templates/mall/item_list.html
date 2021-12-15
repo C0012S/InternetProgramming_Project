@@ -21,9 +21,9 @@
                     {% else %}
                         <span class="badge bg-secondary float-right">미분류</span>
                     {% endif %}
-                    <div class="small text-muted">{{ i.item_price }} 원</div>
                     <h2 class="card-title h4">{{ i.item_name }}</h2>
                     <p class="card-text">{{ i.item_explanation }}</p>
+                    <div class="small float-right" style="font-size:1.5em">{{ i.item_price }} 원</div>
                     <a class="btn btn-primary" href="{{ i.get_absolute_url }}">Read more →</a>
                 </div>
                 <div class="card-footer">
