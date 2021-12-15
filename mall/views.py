@@ -1,9 +1,13 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 from . models import Item, Category
 
 # Create your views here.
+class ItemCreate(CreateView):
+    model = Item
+    fields = ['item_name', 'item_explanation', 'item_price', 'item_size', 'item_material', 'category'] # item_image, maker 추가 필요
+
 class ItemList(ListView) :
     model = Item
     ordering = '-pk'
