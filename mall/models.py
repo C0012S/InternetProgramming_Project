@@ -19,7 +19,7 @@ class Category(models.Model):
 class Item(models.Model):
     item_name = models.CharField(max_length=50) # 상품명
     item_explanation = models.TextField() # 상품 설명
-#    item_image = models.ImageField(upload_to='mall/images/%Y/%m/%d/', blank=True)  # 상품 이미지
+    item_image = models.ImageField(upload_to='mall/images/%Y/%m/%d/', blank=True)  # 상품 이미지
     item_price = models.IntegerField() # 가격
 
     item_size = models.CharField(max_length=20) # 사이즈
