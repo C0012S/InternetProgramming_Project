@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from . models import Item, Category
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 class ItemCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
@@ -18,6 +19,18 @@ class ItemCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
             return super(ItemCreate, self).form_valid(form)
         else:
             return redirect('/mall/')
+
+class ItemUpdate(LoginRequiredMixin, UpdateView):
+    model = Item
+    fields = ['item_name', 'item_explanation', 'item_price', 'item_size', 'item_material', 'category']  # item_image, maker 추가 필요
+
+    template_name = 'mall/item_update_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and (request.user.is_staff or request.user.is_superuser): # 로그인한 staff와 superuser라면
+            return super(ItemUpdate, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
 class ItemList(ListView) :
     model = Item

@@ -15,10 +15,18 @@
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">{{ item.item_name }}</h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">{{ item.item_price }} 원</div>
-                            <!-- Post categories-->
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
+                            <div class="text-muted fst-italic mb-2">
+                                {{ item.item_price }} 원
+                                {% if user.is_authenticated %}
+                                    {% if user.is_staff or user.is_superuser %}
+                                        <a href="/mall/update_item/{{ item.pk }}/"
+                                           class="btn btn-info btn-sm float-right">
+                                            <i class="fas fa-pen"></i>&nbsp;Edit Item
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+
                         </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
