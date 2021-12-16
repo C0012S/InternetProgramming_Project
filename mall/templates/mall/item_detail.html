@@ -15,7 +15,7 @@
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">{{ item.item_name }}</h1>
                             <!-- Post meta content-->
-                            <div class="small" style="font-size:1.5em">
+                            <div class="small text-primary" style="font-size:1.5em">
                                 {{ item.item_price }} 원
                                 {% if user.is_authenticated %}
                                     {% if user.is_staff or user.is_superuser %}
@@ -29,11 +29,22 @@
 
                         </header>
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="{{ item.item_image.url }}" alt="..." /></figure>
+                        <figure class="mb-4">
+                            {% if item.item_image %}
+                                <img class="img-fluid rounded" src="{{ item.item_image.url }}" alt="{{ item.item_name }}의 item image" />
+                            {% else %}
+                                <img class="img-fluid rounded" src="https://picsum.photos/seed/{{ item.id }}/800/200" alt="random image" />
+                            {% endif %}
+                        </figure>
                         <!-- Post content-->
                         <section class="mb-5">
                             <p>{{ item.item_explanation }}</p>
-                            <div class="small text-muted">개발 예정</div>
+                            {% if user.is_authenticated %}
+                                {% if user.is_staff or user.is_superuser %}
+                                    <span class="small text-muted float-right">{{ item.author }}에 의해 등록된 상품</span>
+                                {% endif %}
+                            {% endif %}
+                            <div class="small text-muted">사이즈 : {{ item.item_size }} &nbsp;&nbsp;&nbsp;&nbsp; 소재 : {{ item.item_material }}</div>
                         </section>
                     </div>
                     <!-- Comments section-->
