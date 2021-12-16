@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),    # 서버IP/admin
     path('mall/', include('mall.urls')),    # 서버IP/mall
     path('', include('single_pages.urls')),     # 서버IP/
+    path('accounts/', include('allauth.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # 서버IP/media/
