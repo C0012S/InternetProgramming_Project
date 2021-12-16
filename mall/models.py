@@ -34,7 +34,7 @@ class Item(models.Model):
         return f'[{self.pk}]{self.item_name} :: {self.author}'
 
     def get_absolute_url(self):
-        return f'/mall/{self.pk}'
+        return f'/mall/{self.pk}/'
 
 class Comment(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
