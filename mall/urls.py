@@ -8,4 +8,5 @@ urlpatterns = [ # 서버IP/mall/
     path('create_item/', views.ItemCreate.as_view()),
     path('update_item/<int:pk>/', views.ItemUpdate.as_view()),
     path('<int:pk>/new_comment/', views.new_comment),
+    path('search/<str:q>/', views.ItemSearch.as_view()),
 ]
