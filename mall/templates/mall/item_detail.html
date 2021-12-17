@@ -70,6 +70,14 @@
                                 {% if item.comment_set.exists %}
                                     {% for comment in item.comment_set.all %}
                                         <!-- Single comment-->
+
+                                        {% if user.is_authenticated and comment.author == user %}
+                                            <a role="button" class="btn btn-sm btn-info float-right"
+                                               id="comment-{{ comment.pk }}-update-btn" href="/mall/update_comment/{{ comment.pk }}/">
+                                                edit
+                                            </a>
+                                        {% endif %}
+
                                         <div class="d-flex" id="comment-{{ comment.pk }}">
                                             <div class="flex-shrink-0">
                                                 <img class="rounded-circle" src="{{ comment.get_avatar_url }}" alt="{{ comment.author }}" width="60px" />
@@ -78,6 +86,10 @@
                                                 <div class="fw-bold">{{ comment.author.username }} &nbsp;&nbsp;&nbsp;
                                                     <small class="text-muted">({{ comment.created_at }})</small></div>
                                                 <p>{{ comment.content | linebreaks }}</p>
+
+                                                {% if comment.created_at != comment.modified_at %}
+                                                    <p class="text-muted"><small>Updated : {{ comment.modified_at }}</small></p>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     {% endfor %}
