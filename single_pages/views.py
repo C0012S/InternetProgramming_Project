@@ -9,7 +9,9 @@ def home_page(request):
                   {'recent_items' : recent_items})
 
 def my_page(request):
-    return render(request, 'single_pages/my_page.html')
+    item_list = Item.objects.order_by('-pk')
+    return render(request, 'single_pages/my_page.html',
+                  {'item_list' : item_list})
 
 def about_company(request):
     return render(request, 'single_pages/about_company.html')
