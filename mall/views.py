@@ -36,7 +36,7 @@ def new_comment(request, pk):
 # Create your views here.
 class ItemCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Item
-    fields = ['item_name', 'item_explanation', 'item_price', 'item_size', 'item_material', 'category'] # item_image, maker 추가 필요
+    fields = ['item_name', 'item_explanation', 'item_image', 'item_price', 'item_size', 'item_material', 'maker', 'category']
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
@@ -51,7 +51,7 @@ class ItemCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 class ItemUpdate(LoginRequiredMixin, UpdateView):
     model = Item
-    fields = ['item_name', 'item_explanation', 'item_price', 'item_size', 'item_material', 'category']  # item_image, maker 추가 필요
+    fields = ['item_name', 'item_explanation', 'item_image', 'item_price', 'item_size', 'item_material', 'maker', 'category']
 
     template_name = 'mall/item_update_form.html'
 

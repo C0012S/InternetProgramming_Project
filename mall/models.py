@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdown
 
 # Create your models here.
 
@@ -32,7 +34,7 @@ class Category(models.Model):
 
 class Item(models.Model):
     item_name = models.CharField(max_length=50) # 상품명
-    item_explanation = models.TextField() # 상품 설명
+    item_explanation = MarkdownxField() # 상품 설명
     item_image = models.ImageField(upload_to='mall/images/%Y/%m/%d/', blank=True)  # 상품 이미지
     item_price = models.IntegerField() # 가격
 
@@ -49,6 +51,9 @@ class Item(models.Model):
 
     def get_absolute_url(self):
         return f'/mall/{self.pk}/'
+
+    def get_content_markdown(self):
+        return markdown(self.item_explanation)
 
 class Comment(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)

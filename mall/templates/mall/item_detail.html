@@ -46,7 +46,7 @@
                         </figure>
                         <!-- Post content-->
                         <section class="mb-5">
-                            <p>{{ item.item_explanation }}</p>
+                            <p>{{ item.get_content_markdown | safe }}</p>
                             {% if user.is_authenticated %}
                                 {% if user.is_staff or user.is_superuser %}
                                     <span class="small text-muted float-right">{{ item.author }}에 의해 등록된 상품</span>
