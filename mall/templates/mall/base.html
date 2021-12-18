@@ -2,7 +2,7 @@
 {% load static %}
 <html lang="ko">
 <head>
-    <title>{% block head_title %}Mall Item{% endblock %}</title>
+    <title>{% block head_title %}IP Mall Item{% endblock %}</title>
     <link href="{% static 'mall/bootstrap/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen">
     <script src="https://kit.fontawesome.com/96e208bb9a.js" crossorigin="anonymous"></script>
 </head>
@@ -44,6 +44,26 @@
                 </div>
             </div>
           </div>
+
+            <!-- Maker widget-->
+          <div class="card mb-4" id="makers-card">
+            <div class="card-header">
+                Makers
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <ul>
+                        {% for m in makers %}
+<!--                            <li><a href="http://127.0.0.1:8000/mall/maker/{{ m.maker_slug }}/">{{ m }} ({{ m.item_set.count }})</a></li> -->
+                            <li><a href="#!">{{ m }} ({{ m.item_set.count }})</a></li>
+                        {% endfor %}
+<!--                        <li><a href="http://127.0.0.1:8000/mall/maker/no_maker/">No Maker ({{ no_maker_item_count }})</a></li> -->
+                        <li><a href="#!">No Maker ({{ no_maker_item_count }})</a></li>
+                    </ul>
+                </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

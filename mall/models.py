@@ -3,6 +3,17 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class Maker(models.Model):
+    maker_name = models.CharField(max_length=50, unique=True)  # 제조사 명
+    maker_address = models.CharField(max_length=100)  # 제조사 주소
+    maker_number = models.CharField(max_length=20)  # 제조사 연락처
+
+    maker_email = models.CharField(max_length=50)  # 제조사 이메일
+    maker_slug = models.SlugField(max_length=100, unique=True, allow_unicode=True) # URL
+
+    def __str__(self):
+        return self.maker_name
+
 class Category(models.Model):
     category_name = models.CharField(max_length=50, unique=True) # 카테고리 이름
     slug = models.SlugField(max_length=100, unique=True, allow_unicode=True) # URL
@@ -25,7 +36,7 @@ class Item(models.Model):
     item_size = models.CharField(max_length=20) # 사이즈
     item_material = models.CharField(max_length=40) # 소재
 
-#    maker = models.ForeignKey(Maker, null=True, blank=True, on_delete=models.SET_NULL) # 제조사 포함 (다대일 관계)
+    maker = models.ForeignKey(Maker, null=True, blank=True, on_delete=models.CASCADE) # 제조사 포함 (다대일 관계)
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL) # 카테고리 포함 (다대일 관계)
 
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)

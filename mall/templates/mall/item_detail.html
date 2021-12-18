@@ -1,7 +1,7 @@
 {% extends 'mall/base.html' %}
 {% load crispy_forms_tags %}
 {% block head_title %}
-    {{ item.item_name }} - Mall Item
+    {{ item.item_name }} - IP Mall Item
 {% endblock %}
 {% block main_area %}
                     <!-- Post content-->
@@ -13,6 +13,13 @@
                             {% else %}
                                 <span class="badge bg-secondary float-right">미분류</span>
                             {% endif %}
+
+                            {% if item.maker %}
+                                <span class="badge bg-warning float-right" style="margin:0px 10px">{{ item.maker }}</span>
+                            {% else %}
+                                <span class="badge bg-warning float-right" style="margin:0px 10px">No Maker</span>
+                            {% endif %}
+
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">{{ item.item_name }}</h1>
                             <!-- Post meta content-->

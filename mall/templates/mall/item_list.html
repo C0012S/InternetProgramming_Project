@@ -28,6 +28,13 @@
                         {% else %}
                             <span class="badge bg-secondary float-right">미분류</span>
                         {% endif %}
+
+                        {% if i.maker %}
+                            <span class="badge bg-warning float-right" style="margin:0px 10px">{{ i.maker }}</span>
+                        {% else %}
+                            <span class="badge bg-warning float-right" style="margin:0px 10px">No Maker</span>
+                        {% endif %}
+
                         <h2 class="card-title h4">{{ i.item_name }}</h2>
                         <p class="card-text">{{ i.item_explanation | truncatechars:100 }}</p>
                         <div class="small float-right text-primary" style="font-size:1.5em">{{ i.item_price }} 원</div>

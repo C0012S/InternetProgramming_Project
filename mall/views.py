@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from . models import Item, Category, Comment
+from . models import Item, Category, Comment, Maker
 from django.core.exceptions import PermissionDenied
 from . forms import CommentForm
 from django.shortcuts import get_object_or_404
@@ -70,6 +70,8 @@ class ItemList(ListView) :
         context = super(ItemList, self).get_context_data()
         context['categories'] = Category.objects.all()
         context['no_category_item_count'] = Item.objects.filter(category=None).count()
+        context['makers'] = Maker.objects.all()
+        context['no_maker_item_count'] = Item.objects.filter(maker=None).count()
         return context
 
 # item_list.html
@@ -82,6 +84,8 @@ class ItemDetail(DetailView) :
         context['categories'] = Category.objects.all()
         context['no_category_item_count'] = Item.objects.filter(category=None).count()
         context['comment_form'] = CommentForm
+        context['makers'] = Maker.objects.all()
+        context['no_maker_item_count'] = Item.objects.filter(maker=None).count()
         return context
 
 # item_detail.html
