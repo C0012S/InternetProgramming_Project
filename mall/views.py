@@ -33,6 +33,15 @@ def new_comment(request, pk):
     else:
         raise PermissionDenied
 
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    item = comment.item
+    if request.user.is_authenticated and request.user == comment.author:
+        comment.delete()
+        return redirect(item.get_absolute_url())
+    else:
+        raise PermissionDenied
+
 # Create your views here.
 class ItemCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Item

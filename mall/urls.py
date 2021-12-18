@@ -11,4 +11,5 @@ urlpatterns = [ # 서버IP/mall/
     path('search/<str:q>/', views.ItemSearch.as_view()),
     path('update_comment/<int:pk>/', views.CommentUpdate.as_view()),
     path('maker/<str:maker_slug>/', views.maker_page),
+    path('delete_comment/<int:pk>/', views.delete_comment),
 ]
