@@ -122,3 +122,19 @@ def category_page(request, slug):
                       'category' : category
                   }
                   )
+
+def maker_page(request, maker_slug):
+    if maker_slug == 'no_maker':
+        maker = 'No Maker'
+        item_list = Item.objects.filter(maker=None)
+    else:
+        maker = Maker.objects.get(maker_slug=maker_slug)
+        item_list = Item.objects.filter(maker=maker)
+    return render(request, 'mall/item_list.html',
+                  {
+                      'item_list' : item_list,
+                      'makers' : Maker.objects.all(),
+                      'no_maker_item_count' : Item.objects.filter(maker=None).count(),
+                      'maker' : maker
+                  }
+                  )

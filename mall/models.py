@@ -14,6 +14,9 @@ class Maker(models.Model):
     def __str__(self):
         return self.maker_name
 
+    def get_absolute_url(self):
+        return f'/mall/maker/{self.maker_slug}'
+
 class Category(models.Model):
     category_name = models.CharField(max_length=50, unique=True) # 카테고리 이름
     slug = models.SlugField(max_length=100, unique=True, allow_unicode=True) # URL

@@ -12,6 +12,7 @@
               Item
               {% if category %} <span class="badge bg-secondary">{{ category }}</span> {% endif %}
               {% if search_info %} <span class="badge bg-secondary">{{ search_info }}</span> {% endif %}
+<!--              {% if maker %} <span class="badge bg-warning">{{ maker }}</span> {% endif %}  -->
           </h1>
           {% if item_list.exists %}
               {% for i in item_list %}
