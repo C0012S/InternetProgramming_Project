@@ -15,14 +15,11 @@ def my_page(request):
 
 def about_company(request):
     category = Category.objects.all()
-    if Item.objects.filter(category=None).count() > 0:
-        no_category = '미분류'
 
     maker = Maker.objects.all()
 
     item_list = Item.objects.order_by('-pk')
     return render(request, 'single_pages/about_company.html',
                   {'category' : category,
-                   'no_category' : no_category,
                    'item_list' : item_list,
                    'maker' : maker})

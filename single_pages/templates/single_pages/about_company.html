@@ -30,9 +30,13 @@
                     <div class="card-body">
                         <div class="row">
                             <ul>
-                                {% for m in maker %}
-                                    <li>{{ m }} &nbsp; - &nbsp;</li>
-                                {% endfor %}
+                                {% if maker.exists %}
+                                    {% for m in maker %}
+                                        <li>{{ m }} &nbsp; - &nbsp;</li>
+                                    {% endfor %}
+                                {% else %}
+                                    <li>메이커가 존재하지 않습니다.</li>
+                                {% endif %}
                             </ul>
                             <ul class="list-unstyled mb-0">
                                 {% for m in maker %}
@@ -74,7 +78,12 @@
                     <canvas id="myChart1"></canvas>
                     <div class="card-body">
                         <h5 class="card-title">카테고리별 상품 수</h5>
-                        <p>카테고리가 없는 상품은 제외했습니다.</p>
+                        {% if category.exists %}
+                            <p>카테고리가 없는 상품은 제외했습니다.</p>
+                        {% else %}
+                            <p>카테고리가 존재하지 않아 보여드릴 정보가 없습니다.</p>
+                            <p>(카테고리가 없는 상품 제외.)</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -95,7 +104,12 @@
                             <canvas id="myChart3"></canvas>
                         </div>
                         <div class="col-lg-5">
-                            <p>카테고리가 없는 상품은 제외했습니다.</p>
+                            {% if category.exists %}
+                                <p>카테고리가 없는 상품은 제외했습니다.</p>
+                            {% else %}
+                                <p>카테고리가 존재하지 않아 보여드릴 정보가 없습니다.</p>
+                                <p>(카테고리가 없는 상품 제외.)</p>
+                            {% endif %}
                         </div>
                     </div>
                   </div>
@@ -162,7 +176,12 @@
                     <canvas id="myChart2"></canvas>
                     <div class="card-body">
                         <h5 class="card-title">메이커별 상품 수</h5>
-                        <p>메이커가 없는 상품은 제외했습니다.</p>
+                        {% if maker.exists %}
+                            <p>메이커가 없는 상품은 제외했습니다.</p>
+                        {% else %}
+                            <p>메이커가 존재하지 않아 보여드릴 정보가 없습니다.</p>
+                            <p>(메이커가 없는 상품 제외.)</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -183,7 +202,12 @@
                             <canvas id="myChart4"></canvas>
                         </div>
                         <div class="col-lg-5">
-                            <p>메이커가 없는 상품은 제외했습니다.</p>
+                            {% if maker.exists %}
+                                <p>메이커가 없는 상품은 제외했습니다.</p>
+                            {% else %}
+                                <p>메이커가 존재하지 않아 보여드릴 정보가 없습니다.</p>
+                                <p>(메이커가 없는 상품 제외.)</p>
+                            {% endif %}
                         </div>
                     </div>
                   </div>
